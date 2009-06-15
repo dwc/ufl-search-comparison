@@ -1,5 +1,7 @@
 <?php
-$query = $_GET['query'];
+include_once('includes/functions.php');
+
+$query = $_REQUEST['query'];
 ?>
 <html>
   <head>
@@ -13,6 +15,6 @@ $query = $_GET['query'];
       <input type="text" name="query" value="<?php echo htmlspecialchars($query); ?>" />
       <input type="submit" value="Search" />
     </form>
-<?php if ($query): include('includes/ui.php'); endif; ?>
+<?php if ($query): display_ui($query); endif; ?>
   </body>
 </html>

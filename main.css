@@ -15,3 +15,13 @@ iframe {
 #right {
     float: right;
 }
+
+#query {
+    text-align: center;
+    padding: 2em;
+    background-color: #eee;
+}
+
+#query input[type="text"] {
+    width: 30em;
+}

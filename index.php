@@ -1,6 +1,4 @@
 <?php
-include('includes/box.php');
-
 $query = $_GET['query'];
 ?>
 <html>

@@ -1,6 +1,4 @@
 <?php
-include('includes/box.php');
-
 $queries = file_get_contents('queries.txt');
 $queries = split("\n", $queries);
 

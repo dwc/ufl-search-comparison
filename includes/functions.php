@@ -24,6 +24,31 @@ function load_results($box, $query, $side = 'left') {
 <?php
 }
 
-function log_choice($query, $box) {
+function log_choice($ip, $query, $box) {
+    $db = mysql_connect('', '', '');
+    if (! $db) {
+        die('Could not connect: ' . mysql_error());
+    }
+
+    $result = mysql_select_db('', $db);
+    if (! $result) {
+        die('Could not use database: ' . mysql_error());
+    }
+
+    /*
+       CREATE TABLE search_comparison_choices (
+           id MEDIUMINT NOT NULL AUTO_INCREMENT,
+           ip VARCHAR(15) NOT NULL,
+           query VARCHAR(1024) NOT NULL,
+           box VARCHAR(7) NOT NULL,
+           PRIMARY KEY (id)
+       );
+     */
+    $result = mysql_query("INSERT INTO search_comparison_choices (ip, query, box) VALUES ('" . mysql_escape_string($ip) . "', '" . mysql_escape_string($query) . "', '" . mysql_escape_string($box) . "')", $db);
+    if (! $result) {
+        die('Invalid query: ' . mysql_error());
+    }
+
+    mysql_close($db);
 }
 ?>

@@ -1,6 +1,10 @@
 <?php
 include_once('includes/functions.php');
 
+if ($_POST['query'] and $_POST['box']) {
+    log_choice($_SERVER['REMOTE_ADDR'], $_POST['query'], $_POST['box']);
+}
+
 $queries = file_get_contents('queries.txt');
 $queries = split("\n", $queries);
 

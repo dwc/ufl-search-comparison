@@ -1,0 +1,3 @@
+AuthName "GatorLink"
+AuthType GatorLink
+Require user bfloyd danshields dwc spooner

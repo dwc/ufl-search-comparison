@@ -51,4 +51,13 @@ function log_choice($ip, $query, $box) {
 
     mysql_close($db);
 }
+
+function get_chart_url($data, $width = 250, $height = 58, $colors = array('FF0000', '0000FF')) {
+    $chart_url_format = 'http://chart.apis.google.com/chart?cht=%s&chs=%dx%d&chd=t:%s&chds=%s&chco=%s';
+
+    $max = max($data);
+    $chart_url = sprintf($chart_url_format, 'bhs', $width, $height, join(',', $data), "0,$max", join('|', $colors));
+
+    return $chart_url;
+}
 ?>

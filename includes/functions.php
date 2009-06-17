@@ -1,4 +1,7 @@
 <?php
+include_once('connection.php');
+
+
 function display_ui($query) {
     $boxes = array('googlea', 'googleb');
 
@@ -25,15 +28,7 @@ function load_results($box, $query, $side = 'left') {
 }
 
 function log_choice($ip, $query, $box) {
-    $db = mysql_connect('', '', '');
-    if (! $db) {
-        die('Could not connect: ' . mysql_error());
-    }
-
-    $result = mysql_select_db('', $db);
-    if (! $result) {
-        die('Could not use database: ' . mysql_error());
-    }
+    global $db;
 
     /*
        CREATE TABLE search_comparison_choices (
@@ -48,8 +43,6 @@ function log_choice($ip, $query, $box) {
     if (! $result) {
         die('Invalid query: ' . mysql_error());
     }
-
-    mysql_close($db);
 }
 
 function get_chart_url($data, $width = 250, $height = 58, $colors = array('FF0000', '0000FF')) {

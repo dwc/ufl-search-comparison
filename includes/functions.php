@@ -38,8 +38,14 @@ function log_choice($ip, $query, $box) {
            box VARCHAR(7) NOT NULL,
            PRIMARY KEY (id)
        );
-     */
-    $result = mysql_query("INSERT INTO search_comparison_choices (ip, query, box) VALUES ('" . mysql_escape_string($ip) . "', '" . mysql_escape_string($query) . "', '" . mysql_escape_string($box) . "')", $db);
+    */
+    $query = sprintf("INSERT INTO search_comparison_choices (ip, query, box) VALUES ('%s', '%s', '%s')",
+        mysql_escape_string($ip),
+        mysql_escape_string($query),
+        mysql_escape_string($box)
+    );
+
+    $result = mysql_query($query, $db);
     if (! $result) {
         die('Invalid query: ' . mysql_error());
     }

@@ -1,13 +1,56 @@
 <?php
-include_once('../includes/functions.php');
+include_once('../includes/connection.php');
+
+$box_result = query_database('SELECT DISTINCT(box) FROM search_comparison_choices');
+
+$boxes = array();
+$results = array();
+$maxima = array();
+$winners = array();
+while (list($box) = mysql_fetch_row($box_result)) {
+    $boxes[] = $box;
+
+    $sql = "SELECT query, COUNT(*) FROM search_comparison_choices WHERE box = '%s' GROUP BY query";
+    $query_result = query_database($sql, array($box));
+    while (list($query, $count) = mysql_fetch_row($query_result)) {
+        $results[$query][$box] = $count;
+        if ($count > $maxima[$query]) {
+            $winners[$query] = $box;
+        }
+    }
+}
 ?>
 <html>
   <head>
     <title>Search Comparison</title>
-    <link rel="stylesheet" type="text/css" href="main.css" />
+    <link rel="stylesheet" type="text/css" href="../main.css" />
   </head>
   <body>
     <h1>Search Comparison</h1>
-    <img src="<?php echo htmlspecialchars(get_chart_url(array(1000, 500))); ?>" />
+    <p>The results by query are shown below. Check one or more query to compare the results on the graph.</p>
+    <table>
+      <thead>
+        <tr>
+          <th><input type="checkbox" /></th>
+          <th>Query</th>
+<?php foreach ($boxes as $box): ?>
+          <th><?php echo htmlspecialchars($box); ?></th>
+<?php endforeach; ?>
+        </tr>
+      </thead>
+      <tbody>
+<?php foreach (array_keys($results) as $query): ?>
+        <tr>
+          <td><input type="checkbox" name="query" value="<?php echo htmlspecialchars($query); ?>" /></td>
+          <td><?php echo htmlspecialchars($query); ?></a>
+<?php     $max = 0; ?>
+<?php     foreach ($boxes as $box): ?>
+<?php         $result = array_key_exists($box, $results[$query]) ? $results[$query][$box] : 0; ?>
+          <td<?php if ($box == $winners[$query]): ?> class="winner"<?php endif; ?>><?php echo htmlspecialchars($result); ?></a>
+<?php     endforeach; ?>
+        </tr>
+<?php endforeach; ?>
+      </tbody>
+    </table>
   </body>
 </html>

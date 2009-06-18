@@ -20,14 +20,16 @@ while (list($box) = mysql_fetch_row($box_result)) {
   <head>
     <title>Search Comparison</title>
     <link rel="stylesheet" type="text/css" href="../main.css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <script type="text/javascript" src="checkbox.js"></script>
   </head>
   <body>
     <h1>Search Comparison</h1>
     <p>The results by query are shown below. Check one or more query to compare the results on the graph.</p>
-    <table>
+    <table id="results">
       <thead>
         <tr>
-          <th><input type="checkbox" /></th>
+          <th><input type="checkbox" id="all" /></th>
           <th>Query</th>
 <?php foreach ($boxes as $box): ?>
           <th><?php echo htmlspecialchars($box); ?></th>

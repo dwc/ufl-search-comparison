@@ -28,8 +28,6 @@ function load_results($box, $query, $side = 'left') {
 }
 
 function log_choice($ip, $query, $box) {
-    global $db;
-
     /*
        CREATE TABLE search_comparison_choices (
            id MEDIUMINT NOT NULL AUTO_INCREMENT,
@@ -39,16 +37,8 @@ function log_choice($ip, $query, $box) {
            PRIMARY KEY (id)
        );
     */
-    $query = sprintf("INSERT INTO search_comparison_choices (ip, query, box) VALUES ('%s', '%s', '%s')",
-        mysql_escape_string($ip),
-        mysql_escape_string($query),
-        mysql_escape_string($box)
-    );
-
-    $result = mysql_query($query, $db);
-    if (! $result) {
-        die('Invalid query: ' . mysql_error());
-    }
+    $sql = "INSERT INTO search_comparison_choices (ip, query, box) VALUES ('%s', '%s', '%s')";
+    query_database($sql, array($ip, $query, $box));
 }
 
 function get_chart_url($data, $width = 250, $height = 58, $colors = array('FF0000', '0000FF')) {

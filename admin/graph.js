@@ -58,6 +58,7 @@ $(document).ready(function() {
         $("table#results th.choice").each(function() {
             legend_labels.push($(this).text());
         });
+
         params["chdl"] = $.makeArray(legend_labels).join("|");
 
         // Load the graph

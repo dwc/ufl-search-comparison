@@ -32,29 +32,30 @@ sort($queries);
   </head>
   <body>
     <h1>Search Comparison</h1>
+<?php if ($results): ?>
     <p>The results by query are shown below. Check one or more query to compare the results on the graph.</p>
     <table id="results">
       <thead>
         <tr>
           <th>&nbsp;</th>
           <th>Query</th>
-<?php foreach ($boxes as $box): ?>
+<?php     foreach ($boxes as $box): ?>
           <th class="choice"><?php echo htmlspecialchars($box); ?></th>
-<?php endforeach; ?>
+<?php     endforeach; ?>
         </tr>
       </thead>
       <tbody>
-<?php foreach ($queries as $query): ?>
+<?php     foreach ($queries as $query): ?>
         <tr>
           <td><input type="checkbox" name="query" value="<?php echo htmlspecialchars($query); ?>" /></td>
           <td><a href="../?query=<?php echo htmlspecialchars(urlencode($query)); ?>"><?php echo htmlspecialchars($query); ?></a></td>
-<?php     foreach ($boxes as $box): ?>
-<?php         $result = array_key_exists($box, $results[$query]) ? $results[$query][$box] : 0; ?>
-<?php         $is_winner = false; if (is_winner($box, $results[$query])): $is_winner = true; endif; ?>
+<?php         foreach ($boxes as $box): ?>
+<?php             $result = array_key_exists($box, $results[$query]) ? $results[$query][$box] : 0; ?>
+<?php             $is_winner = false; if (is_winner($box, $results[$query])): $is_winner = true; endif; ?>
           <td class="result"><?php if ($is_winner): ?><strong><?php endif; ?><?php echo htmlspecialchars($result); ?><?php if ($is_winner): ?></strong><?php endif; ?></td>
-<?php     endforeach; ?>
+<?php         endforeach; ?>
         </tr>
-<?php endforeach; ?>
+<?php     endforeach; ?>
         <tr id="total">
           <td><input type="checkbox" name="query" value="(Total)" id="total" checked="checked" /></td>
           <td>(Total)</td>
@@ -66,5 +67,8 @@ sort($queries);
         </tr><!-- #total -->
       </tbody>
     </table><!-- #results -->
+<?php else: ?>
+    <p>No results so far.</p>
+<?php endif; ?>
   </body>
 </html>

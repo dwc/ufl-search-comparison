@@ -5,7 +5,12 @@ iframe {
 
 table {
     border-collapse: collapse;
-    min-width: 40%;
+    min-width: 50%;
+}
+
+table#results {
+    float: left;
+    margin: 0 7em 3em 0;
 }
 
 table td, table th {
@@ -15,10 +20,6 @@ table td, table th {
 
 table td {
     border-bottom: 1px solid #eee;
-}
-
-table td.result {
-    text-align: center;
 }
 
 table th {

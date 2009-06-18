@@ -41,15 +41,6 @@ function log_choice($ip, $query, $box) {
     query_database($sql, array($ip, $query, $box));
 }
 
-function get_chart_url($data, $width = 250, $height = 58, $colors = array('FF0000', '0000FF')) {
-    $chart_url_format = 'http://chart.apis.google.com/chart?cht=%s&chs=%dx%d&chd=t:%s&chds=%s&chco=%s';
-
-    $max = max($data);
-    $chart_url = sprintf($chart_url_format, 'bhs', $width, $height, join(',', $data), "0,$max", join('|', $colors));
-
-    return $chart_url;
-}
-
 function is_winner($box, $results) {
   // Handle ties by counting wins and comparing to number of candidates
   $num_wins = 0;

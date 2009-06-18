@@ -35,7 +35,9 @@ while (list($box) = mysql_fetch_row($box_result)) {
         </tr>
       </thead>
       <tbody>
-<?php foreach (array_keys($results) as $query): ?>
+<?php $queries = array_keys($results); ?>
+<?php sort($queries); ?>
+<?php foreach ($queries as $query): ?>
         <tr>
           <td><input type="checkbox" name="query" value="<?php echo htmlspecialchars($query); ?>" /></td>
           <td><?php echo htmlspecialchars($query); ?></a>

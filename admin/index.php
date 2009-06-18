@@ -40,10 +40,10 @@ while (list($box) = mysql_fetch_row($box_result)) {
 <?php foreach ($queries as $query): ?>
         <tr>
           <td><input type="checkbox" name="query" value="<?php echo htmlspecialchars($query); ?>" /></td>
-          <td><?php echo htmlspecialchars($query); ?></a>
+          <td><a href="../?query=<?php echo htmlspecialchars(urlencode($query)); ?>"><?php echo htmlspecialchars($query); ?></a></td>
 <?php     foreach ($boxes as $box): ?>
 <?php         $result = array_key_exists($box, $results[$query]) ? $results[$query][$box] : 0; ?>
-          <td<?php if (is_winner($box, $results[$query])): ?> class="winner"<?php endif; ?>><?php echo htmlspecialchars($result); ?></a>
+          <td<?php if (is_winner($box, $results[$query])): ?> class="winner"<?php endif; ?>><?php echo htmlspecialchars($result); ?></td>
 <?php     endforeach; ?>
         </tr>
 <?php endforeach; ?>

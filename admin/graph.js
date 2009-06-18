@@ -25,7 +25,7 @@ $(document).ready(function() {
 
             var i = 0;
             $(this).parent().siblings(".result").each(function() {
-                var num_wins = $(this).text();
+                var num_wins = parseInt($(this).text());
 
                 if (! data[i]) data[i] = [];
                 data[i++].push(num_wins);

@@ -27,6 +27,10 @@ table th {
     background-color: #eee;
 }
 
+table tr#total {
+    background-color: #eee;
+}
+
 #left, #right {
     width: 49%;
     text-align: center;

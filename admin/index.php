@@ -40,7 +40,7 @@ sort($queries);
           <th><input type="checkbox" id="all" /></th>
           <th>Query</th>
 <?php foreach ($boxes as $box): ?>
-          <th><?php echo htmlspecialchars($box); ?></th>
+          <th class="choice"><?php echo htmlspecialchars($box); ?></th>
 <?php endforeach; ?>
         </tr>
       </thead>

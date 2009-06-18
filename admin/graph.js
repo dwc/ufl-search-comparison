@@ -14,14 +14,14 @@ $(document).ready(function() {
         };
 
         // Collect the data
-        var labels = [];
+        var axis_labels = [];
         var data = [];
         var max_wins = 0;
 
         var checked_boxes = $('table#results input[type="checkbox"][checked]');
         $(checked_boxes).each(function() {
             var query = $(this).attr("value");
-            labels.push(query);
+            axis_labels.push(query);
 
             var i = 0;
             $(this).parent().siblings(".result").each(function() {
@@ -36,10 +36,10 @@ $(document).ready(function() {
             });
         });
 
-        // Add the labels to the parameter list
+        // Add the axis labels to the parameter list
         params["chxl"] = "0:";
-        for (var i = 0; i < labels.length; i++) {
-            params["chxl"] += "|" + labels[i];
+        for (var i = 0; i < axis_labels.length; i++) {
+            params["chxl"] += "|" + axis_labels[i];
         }
 
         // Add the data to the parameter list
@@ -52,6 +52,13 @@ $(document).ready(function() {
 
         // Set the scale
         params["chds"] = "0," + max_wins;
+
+        // Add the legend
+        var legend_labels = [];
+        $("table#results th.choice").each(function() {
+            legend_labels.push($(this).text());
+        });
+        params["chdl"] = $.makeArray(legend_labels).join("|");
 
         // Load the graph
         $("img#" + img_id).remove();

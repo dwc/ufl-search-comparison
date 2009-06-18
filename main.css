@@ -3,6 +3,29 @@ iframe {
     height: 80%;
 }
 
+table {
+    border-collapse: collapse;
+    min-width: 40%;
+}
+
+table td, table th {
+    margin: 0;
+    padding: 0.4em;
+}
+
+table td {
+    border-bottom: 1px solid #eee;
+}
+
+table td.result {
+    text-align: center;
+}
+
+table th {
+    text-align: left;
+    background-color: #eee;
+}
+
 #left, #right {
     width: 49%;
     text-align: center;

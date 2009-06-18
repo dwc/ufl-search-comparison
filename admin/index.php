@@ -28,7 +28,6 @@ sort($queries);
     <title>Search Comparison</title>
     <link rel="stylesheet" type="text/css" href="../main.css" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
-    <script type="text/javascript" src="checkbox.js"></script>
     <script type="text/javascript" src="graph.js"></script>
   </head>
   <body>
@@ -37,7 +36,7 @@ sort($queries);
     <table id="results">
       <thead>
         <tr>
-          <th><input type="checkbox" id="all" /></th>
+          <th>&nbsp;</th>
           <th>Query</th>
 <?php foreach ($boxes as $box): ?>
           <th class="choice"><?php echo htmlspecialchars($box); ?></th>

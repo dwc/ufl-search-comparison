@@ -1,12 +1,11 @@
 <?php
 include_once('../includes/connection.php');
+include_once('../includes/functions.php');
 
 $box_result = query_database('SELECT DISTINCT(box) FROM search_comparison_choices');
 
 $boxes = array();
 $results = array();
-$maxima = array();
-$winners = array();
 while (list($box) = mysql_fetch_row($box_result)) {
     $boxes[] = $box;
 
@@ -14,9 +13,6 @@ while (list($box) = mysql_fetch_row($box_result)) {
     $query_result = query_database($sql, array($box));
     while (list($query, $count) = mysql_fetch_row($query_result)) {
         $results[$query][$box] = $count;
-        if ($count > $maxima[$query]) {
-            $winners[$query] = $box;
-        }
     }
 }
 ?>
@@ -43,10 +39,9 @@ while (list($box) = mysql_fetch_row($box_result)) {
         <tr>
           <td><input type="checkbox" name="query" value="<?php echo htmlspecialchars($query); ?>" /></td>
           <td><?php echo htmlspecialchars($query); ?></a>
-<?php     $max = 0; ?>
 <?php     foreach ($boxes as $box): ?>
 <?php         $result = array_key_exists($box, $results[$query]) ? $results[$query][$box] : 0; ?>
-          <td<?php if ($box == $winners[$query]): ?> class="winner"<?php endif; ?>><?php echo htmlspecialchars($result); ?></a>
+          <td<?php if (is_winner($box, $results[$query])): ?> class="winner"<?php endif; ?>><?php echo htmlspecialchars($result); ?></a>
 <?php     endforeach; ?>
         </tr>
 <?php endforeach; ?>

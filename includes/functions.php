@@ -42,14 +42,14 @@ function log_choice($ip, $query, $box) {
 }
 
 function is_winner($box, $results) {
-  // Handle ties by counting wins and comparing to number of candidates
-  $num_wins = 0;
-  foreach (array_keys($results) as $candidate_box) {
-      if ($results[$box] > $results[$candidate_box] or $candidate_box == $box) {
-          $num_wins++;
-      }
-  }
+    // Handle ties by counting wins and comparing to number of candidates
+    $num_wins = 0;
+    foreach (array_keys($results) as $candidate_box) {
+        if ($results[$box] > $results[$candidate_box] or $candidate_box == $box) {
+            $num_wins++;
+        }
+    }
 
-  return ($num_wins == count(array_keys($results)));
+    return ($num_wins == count(array_keys($results)));
 }
 ?>

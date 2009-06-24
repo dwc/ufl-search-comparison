@@ -38,7 +38,8 @@ function log_choice($ip, $query, $box) {
        );
     */
     $sql = "INSERT INTO search_comparison_choices (ip, query, box) VALUES ('%s', '%s', '%s')";
-    query_database($sql, array($ip, $query, $box));
+
+    return query_database($sql, array($ip, $query, $box));
 }
 
 function is_winner($box, $results) {

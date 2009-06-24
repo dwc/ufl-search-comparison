@@ -2,11 +2,11 @@
 include_once('includes/functions.php');
 
 if ($_POST['query'] and $_POST['box']) {
-    log_choice($_SERVER['REMOTE_ADDR'], $_POST['query'], $_POST['box']);
-
     if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
-        die("ok");
+        set_error_handler(create_function('$errno, $errstr', 'header("HTTP/1.0 500 Internal Server Error"); die($errstr);'));
     }
+
+    log_choice($_SERVER['REMOTE_ADDR'], $_POST['query'], $_POST['box']);
 }
 
 $query = stripslashes($_REQUEST['query']);

@@ -4,12 +4,12 @@ $db = connect_to_database();
 function connect_to_database($host = '', $username = '', $password = '', $database = '') {
     $db = mysql_connect($host, $username, $password);
     if (! $db) {
-        die('Could not connect: ' . mysql_error());
+        trigger_error('Could not connect: ' . mysql_error(), E_USER_ERROR);
     }
 
     $result = mysql_select_db($database, $db);
     if (! $result) {
-        die('Could not use database: ' . mysql_error());
+        trigger_error('Could not use database: ' . mysql_error(), E_USER_ERROR);
     }
 
     return $db;
@@ -26,7 +26,7 @@ function query_database($sql, $params = array()) {
 
     $result = mysql_query($sql, $db);
     if (! $result) {
-        die('Invalid query: ' . mysql_error());
+        trigger_error('Invalid query: ' . mysql_error(), E_USER_ERROR);
     }
 
     return $result;

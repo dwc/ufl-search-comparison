@@ -44,6 +44,10 @@ table tr#total {
     float: right;
 }
 
+#loading {
+    display: none;
+}
+
 #query {
     text-align: center;
     padding: 2em;

@@ -21,6 +21,8 @@ function load_results($box, $query, $side = 'left') {
         <input type="hidden" name="query" value="<?php echo htmlspecialchars($query); ?>" />
         <input type="hidden" name="box" value="<?php echo htmlspecialchars($box); ?>" />
         <input type="submit" value="<?php echo htmlspecialchars(ucfirst($side)); ?>-hand side is better" />
+        <img src="images/loading.gif" width="16" height="16" alt="Loading..." class="loading" />
+        <img src="images/success.png" width="16" height="16" alt="Success!" class="success" />
       </form>
       <iframe src="<?php echo htmlspecialchars(sprintf($url_format, $box, $query)); ?>"></iframe>
     </div><!-- #<?php echo htmlspecialchars($side); ?> -->

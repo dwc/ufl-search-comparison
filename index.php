@@ -25,7 +25,6 @@ $query = stripslashes($_REQUEST['query']);
       <input type="text" name="query" value="<?php echo htmlspecialchars($query); ?>" />
       <input type="submit" value="Search" />
     </form>
-    <div id="loading">Loading...</div>
 <?php if ($query): display_ui($query); endif; ?>
   </body>
 </html>

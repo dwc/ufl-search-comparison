@@ -3,6 +3,11 @@ iframe {
     height: 80%;
 }
 
+img.loading, img.success {
+    display: none;
+    vertical-align: middle;
+}
+
 table {
     border-collapse: collapse;
     min-width: 50%;
@@ -42,10 +47,6 @@ table tr#total {
 
 #right {
     float: right;
-}
-
-#loading {
-    display: none;
 }
 
 #query {

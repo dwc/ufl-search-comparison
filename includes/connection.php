@@ -1,7 +1,10 @@
 <?php
+include_once(dirname(dirname(__FILE__)) . '/config.php');
+
+
 $db = connect_to_database();
 
-function connect_to_database($host = '', $username = '', $password = '', $database = '') {
+function connect_to_database($host = UFL_SEARCH_DB_HOST, $username = UFL_SEARCH_DB_USERNAME, $password = UFL_SEARCH_DB_PASSWORD, $database = UFL_SEARCH_DB_NAME) {
     $db = mysql_connect($host, $username, $password);
     if (! $db) {
         trigger_error('Could not connect: ' . mysql_error(), E_USER_ERROR);

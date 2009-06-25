@@ -15,6 +15,9 @@ $query = $queries[rand(0, count($queries) - 1)];
   <head>
     <title>Popularity Contest</title>
     <link rel="stylesheet" type="text/css" href="main.css" />
+    <!--[if IE]>
+      <link rel="stylesheet" type="text/css" href="ie.css" />
+    <![endif]-->
   </head>
   <body>
     <h1>Popularity Contest</h1>

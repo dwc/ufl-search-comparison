@@ -28,6 +28,9 @@ sort($queries);
   <head>
     <title>Search Comparison</title>
     <link rel="stylesheet" type="text/css" href="../main.css" />
+    <!--[if IE]>
+      <link rel="stylesheet" type="text/css" href="../ie.css" />
+    <![endif]-->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
     <script type="text/javascript" src="graph.js"></script>
   </head>

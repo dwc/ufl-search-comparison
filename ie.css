@@ -1,0 +1,7 @@
+iframe {
+    height: 100%;
+}
+
+#left, #right {
+    height: 70%;
+}

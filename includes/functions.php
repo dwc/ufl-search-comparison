@@ -1,20 +1,22 @@
 <?php
-include_once('connection.php');
+include_once(dirname(dirname(__FILE__)) . '/config.php');
+include_once(dirname(__FILE__) . '/connection.php');
 
 
 function display_ui($query) {
-    $boxes = array('googlea', 'googleb');
+    global $UFL_SEARCH_BOXES;
+
+    $boxes = array_keys($UFL_SEARCH_BOXES);
 
     $index = rand(0, count($boxes) - 1);
     $left = $boxes[$index];
     $right = $boxes[1 - $index];
 
-    load_results($left, $query);
-    load_results($right, $query, 'right');
+    load_results($left, $UFL_SEARCH_BOXES[$left], $query);
+    load_results($right, $UFL_SEARCH_BOXES[$right], $query, 'right');
 }
 
-function load_results($box, $query, $side = 'left') {
-    $url_format = 'http://%s.ns.ufl.edu/search?q=%s&btnG=Google+Search&access=p&entqr=3&output=xml_no_dtd&sort=date%%3AD%%3AL%%3Ad1&entsp=0&client=default_frontend&ud=1&oe=UTF-8&ie=UTF-8&proxystylesheet=default_frontend&site=default_collection';
+function load_results($box, $url_format, $query, $side = 'left') {
 ?>
     <div id="<?php echo htmlspecialchars($side); ?>">
       <form method="post" class="choice">
@@ -24,7 +26,7 @@ function load_results($box, $query, $side = 'left') {
         <img src="images/loading.gif" width="16" height="16" alt="Loading..." class="loading" />
         <img src="images/success.png" width="16" height="16" alt="Success!" class="success" />
       </form>
-      <iframe src="<?php echo htmlspecialchars(sprintf($url_format, $box, $query)); ?>"></iframe>
+      <iframe src="<?php echo htmlspecialchars(sprintf($url_format, $query)); ?>"></iframe>
     </div><!-- #<?php echo htmlspecialchars($side); ?> -->
 <?php
 }

@@ -2,6 +2,7 @@
 include_once('../includes/connection.php');
 include_once('../includes/functions.php');
 
+
 $totals_result = query_database("SELECT box, COUNT(*) FROM search_comparison_choices GROUP BY box");
 
 $totals = array();

@@ -24,7 +24,7 @@ function query_database($sql, $params = array()) {
     if (count($params) > 0) {
         $params = array_map('stripslashes', $params);
         $params = array_map('mysql_escape_string', $params);
-	$sql = vsprintf($sql, $params);
+        $sql = vsprintf($sql, $params);
     }
 
     $result = mysql_query($sql, $db);

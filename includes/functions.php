@@ -3,6 +3,48 @@ include_once(dirname(dirname(__FILE__)) . '/config.php');
 include_once(dirname(__FILE__) . '/connection.php');
 
 
+function load_queries($filename = 'queries.txt', $num_queries = UFL_SEARCH_MAX_QUERIES) {
+    session_start();
+
+    // Select a random set of queries for the survey
+    $queries = rtrim(file_get_contents($filename));
+    $queries = split("\n", $queries);
+    shuffle($queries);
+
+    $_SESSION['queries'] = array_slice($queries, 0, $num_queries);
+    $_SESSION['index'] = 0;
+}
+
+function current_query() {
+    session_start();
+
+    return $_SESSION['queries'][$_SESSION['index']];
+}
+
+function next_query() {
+    session_start();
+
+    return $_SESSION['queries'][++$_SESSION['index']];
+}
+
+function survey_started() {
+    session_start();
+
+    return (isset($_SESSION['queries']) and isset($_SESSION['index']));
+}
+
+function survey_finished() {
+    session_start();
+
+    return ($_SESSION['index'] == count($_SESSION['queries']));
+}
+
+function survey_progress($separator = ' of ') {
+    session_start();
+
+    return $_SESSION['index'] + 1 . $separator . count($_SESSION['queries']);
+}
+
 function display_ui($query) {
     global $UFL_SEARCH_BOXES;
 

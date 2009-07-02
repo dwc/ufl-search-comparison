@@ -10,7 +10,7 @@ img.loading, img.success {
 
 table {
     border-collapse: collapse;
-    min-width: 50%;
+    width: 50%;
 }
 
 table#results {

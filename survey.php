@@ -30,14 +30,14 @@ else {
 ?>
 <html>
   <head>
-    <title>Popularity Contest</title>
+    <title>Search Survey</title>
     <link rel="stylesheet" type="text/css" href="main.css" />
     <!--[if IE]>
       <link rel="stylesheet" type="text/css" href="ie.css" />
     <![endif]-->
   </head>
   <body>
-    <h1>Popularity Contest</h1>
+    <h1>Search Survey</h1>
 <?php if ($show_intro): ?>
     <p>Thank you for expressing interest in helping the University of Florida with its Web site search service. In this survey, you will be asked to compare search results for <?php echo htmlspecialchars(UFL_SEARCH_MAX_QUERIES); ?> quer<?php echo (UFL_SEARCH_MAX_QUERIES == 1 ? 'y' : 'ies'); ?> and choose the set you think is better. Please use your best judgment if you run across a query that you are not familiar with.</p>
     <p>Note: Your choices are completely anonymous.</p>

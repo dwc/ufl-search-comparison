@@ -49,7 +49,7 @@ else {
     <p>We will be using your data in the future as we perform upgrades to the <a href="http://www.ufl.edu/">University of Florida</a> <a href="http://search.ufl.edu/">Web site search service</a>.</p>
 <?php elseif ($query): ?>
     <h2><?php echo htmlspecialchars(survey_progress()); ?></h2>
-    <p>For the query <em><?php echo htmlspecialchars($query); ?></em>, choose the results below that you think are better.</p>
+    <h3>Query: <em><?php echo htmlspecialchars($query); ?></em></h3>
 <?php     display_ui($query); ?>
 <?php else: ?>
     <p>Error</p>

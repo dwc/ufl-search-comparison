@@ -10,7 +10,7 @@ if (survey_started()) {
     $query = current_query();
 
     if ($_POST['query'] and $_POST['box']) {
-        log_choice($_SERVER['REMOTE_ADDR'], $_POST['query'], $_POST['box']);
+        log_choice(session_id(), $_POST['query'], $_POST['box']);
 
         // Continue survey
         $query = next_query();

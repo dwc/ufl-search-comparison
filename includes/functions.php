@@ -73,19 +73,19 @@ function load_results($box, $url_format, $query, $side = 'left') {
 <?php
 }
 
-function log_choice($ip, $query, $box) {
+function log_choice($sid, $query, $box) {
     /*
        CREATE TABLE search_comparison_choices (
            id MEDIUMINT NOT NULL AUTO_INCREMENT,
-           ip VARCHAR(15) NOT NULL,
+           sid VARCHAR(40) NOT NULL,
            query VARCHAR(1024) NOT NULL,
            box VARCHAR(7) NOT NULL,
            PRIMARY KEY (id)
        );
     */
-    $sql = "INSERT INTO search_comparison_choices (ip, query, box) VALUES ('%s', '%s', '%s')";
+    $sql = "INSERT INTO search_comparison_choices (sid, query, box) VALUES ('%s', '%s', '%s')";
 
-    return query_database($sql, array($ip, $query, $box));
+    return query_database($sql, array($sid, $query, $box));
 }
 
 function is_winner($box, $results) {

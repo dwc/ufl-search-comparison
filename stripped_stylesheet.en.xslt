@@ -2942,9 +2942,7 @@ for (var j = 1; j &lt; p.length; j++) { url += "&amp;" + p[j]; }}
     </xsl:if>
 
     <xsl:if test="$show_res_date != '0'">
-    <xsl:if test="($date != '') and
-                  (translate($date, '-', '') &gt; 19500000) and
-                  (translate($date, '-', '') &lt; 21000000)">
+    <xsl:if test="($date != '')">
         <font color="{$res_url_color}" size="{$res_url_size}">
         <xsl:text> - </xsl:text>
         <xsl:value-of select="$date"/>

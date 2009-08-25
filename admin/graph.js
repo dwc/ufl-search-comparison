@@ -8,7 +8,7 @@ $(document).ready(function() {
         var params = {
             cht: "bvg",
             chs: width + "x" + height,
-            chbh: "r,0.5,1.5",
+            chbh: "r,0.25,1.50",
             chco: "ff0000,00ff00,0000ff",
             chxt: "x"
         };

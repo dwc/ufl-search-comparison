@@ -18,7 +18,7 @@ $(document).ready(function() {
         var data = [];
         var max_wins = 0;
 
-        var checked_boxes = $('table#results input[type="checkbox"][checked]');
+        var checked_boxes = $('table#results input[type="checkbox"]:checked');
         $(checked_boxes).each(function() {
             var query = $(this).attr("value");
             axis_labels.push(query);

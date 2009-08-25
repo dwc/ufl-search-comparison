@@ -9,8 +9,8 @@ $query = '';
 if (survey_started()) {
     $query = current_query();
 
-    if ($_POST['query'] and $_POST['box']) {
-        log_choice(session_id(), $_POST['query'], $_POST['box']);
+    if ($_POST['query'] and $_POST['choice']) {
+        log_choice(session_id(), $_POST['query'], $_POST['choice']);
 
         // Continue survey
         $query = next_query();

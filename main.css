@@ -1,6 +1,25 @@
+#choices {
+    text-align: center;
+    margin: 10px;
+}
+
+#choices form {
+    display: inline;
+    margin: 30px;
+}
+
 iframe {
-    width: 100%;
     height: 75%;
+    text-align: center;
+    width: 49%;
+}
+
+iframe#left {
+    float: left;
+}
+
+iframe#right {
+    float: right;
 }
 
 img.loading, img.success {
@@ -34,19 +53,6 @@ table th {
 
 table tr#total {
     background-color: #eee;
-}
-
-#left, #right {
-    width: 49%;
-    text-align: center;
-}
-
-#left {
-    float: left;
-}
-
-#right {
-    float: right;
 }
 
 #query {

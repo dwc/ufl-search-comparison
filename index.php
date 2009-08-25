@@ -2,12 +2,14 @@
 include_once('includes/functions.php');
 
 
-if ($_POST['query'] and $_POST['box']) {
+session_start();
+
+if ($_POST['query'] and $_POST['choice']) {
     if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
         set_error_handler(create_function('$errno, $errstr', 'header("HTTP/1.0 500 Internal Server Error"); die($errstr);'));
     }
 
-    log_choice(session_id(), $_POST['query'], $_POST['box']);
+    log_choice(session_id(), $_POST['query'], $_POST['choice']);
 }
 
 $query = stripslashes($_REQUEST['query']);
@@ -24,7 +26,7 @@ $query = stripslashes($_REQUEST['query']);
   </head>
   <body>
     <h1>Search Comparison</h1>
-    <p>Enter a query and then choose the results below that you think are better.</p>
+    <p>Enter a query and then choose the results below that you think are better. If you cannot decide between one or the other, choose neither.</p>
     <form method="get" id="query">
       <input type="text" name="query" value="<?php echo htmlspecialchars($query); ?>" />
       <input type="submit" value="Search" />

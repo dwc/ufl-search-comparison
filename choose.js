@@ -1,9 +1,9 @@
 $(document).ready(function() {
-    $("form.choice").submit(function() {
+    $("#choices form").submit(function() {
         var form = $(this);
 
         // Disable choice buttons
-        $('form.choice input[type="submit"]').attr("disabled", "disabled");
+        $('#choices input[type="submit"]').attr("disabled", "disabled");
 
         // Hide any outstanding images, then show this form's loading image
         $("img.loading, img.success").hide();

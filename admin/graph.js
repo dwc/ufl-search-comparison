@@ -9,7 +9,7 @@ $(document).ready(function() {
             cht: "bvg",
             chs: width + "x" + height,
             chbh: "r,0.5,1.5",
-            chco: "ff0000,0000ff",
+            chco: "ff0000,00ff00,0000ff",
             chxt: "x"
         };
 

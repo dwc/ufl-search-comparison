@@ -54,45 +54,64 @@ function display_ui($query) {
     $left = $boxes[$index];
     $right = $boxes[1 - $index];
 
+    show_choices_form($query, $left, $right);
     load_results($left, $UFL_SEARCH_BOXES[$left], $query);
     load_results($right, $UFL_SEARCH_BOXES[$right], $query, 'right');
 }
 
 function load_results($box, $url_format, $query, $side = 'left') {
 ?>
-    <div id="<?php echo htmlspecialchars($side); ?>">
-      <form method="post" class="choice">
-        <input type="hidden" name="query" value="<?php echo htmlspecialchars($query); ?>" />
-        <input type="hidden" name="box" value="<?php echo htmlspecialchars($box); ?>" />
-        <input type="submit" value="<?php echo htmlspecialchars(ucfirst($side)); ?>-hand side is better" />
-        <img src="images/loading.gif" width="16" height="16" alt="Loading..." class="loading" />
-        <img src="images/success.png" width="16" height="16" alt="Success!" class="success" />
-      </form>
-      <iframe src="<?php echo htmlspecialchars(sprintf($url_format, $query)); ?>"></iframe>
-    </div><!-- #<?php echo htmlspecialchars($side); ?> -->
+    <iframe id="<?php echo htmlspecialchars($side); ?>" src="<?php echo htmlspecialchars(sprintf($url_format, $query)); ?>"></iframe>
 <?php
 }
 
-function log_choice($sid, $query, $box) {
+function show_choices_form($query, $left, $right) {
+    $classes = array(
+        $left  => 'left',
+        $right => 'right',
+    );
+
+    $choices = array(
+       $left       => 'Left-hand',
+       '(neither)' => 'Neither',
+       $right      => 'Right-hand',
+    );
+
+    echo '    <div id="choices">' . "\n";
+    foreach ($choices as $choice => $label) {
+?>
+      <form method="post"<?php if (array_key_exists($choice, $classes)): ?> class="<?php echo htmlspecialchars($classes[$choice]); ?>"<?php endif; ?>>
+        <input type="hidden" name="query" value="<?php echo htmlspecialchars($query); ?>" />
+        <input type="hidden" name="choice" value="<?php echo htmlspecialchars($choice); ?>" />
+        <input type="submit" value="<?php echo htmlspecialchars($label); ?> side is better" />
+        <img src="images/loading.gif" width="16" height="16" alt="Loading..." class="loading" />
+        <img src="images/success.png" width="16" height="16" alt="Success!" class="success" />
+      </form>
+<?php
+    }
+    echo "    </div><!-- #choices -->\n";
+}
+
+function log_choice($sid, $query, $choice) {
     /*
        CREATE TABLE search_comparison_choices (
            id MEDIUMINT NOT NULL AUTO_INCREMENT,
            sid VARCHAR(40) NOT NULL,
            query VARCHAR(1024) NOT NULL,
-           box VARCHAR(7) NOT NULL,
+           choice VARCHAR(32) NOT NULL,
            PRIMARY KEY (id)
        );
     */
-    $sql = "INSERT INTO search_comparison_choices (sid, query, box) VALUES ('%s', '%s', '%s')";
+    $sql = "INSERT INTO search_comparison_choices (sid, query, choice) VALUES ('%s', '%s', '%s')";
 
-    return query_database($sql, array($sid, $query, $box));
+    return query_database($sql, array($sid, $query, $choice));
 }
 
-function is_winner($box, $results) {
+function is_winner($choice, $results) {
     // Handle ties by counting wins and comparing to number of candidates
     $num_wins = 0;
-    foreach (array_keys($results) as $candidate_box) {
-        if ($results[$box] > $results[$candidate_box] or $candidate_box == $box) {
+    foreach (array_keys($results) as $candidate_choice) {
+        if ($results[$choice] > $results[$candidate_choice] or $candidate_choice == $choice) {
             $num_wins++;
         }
     }
